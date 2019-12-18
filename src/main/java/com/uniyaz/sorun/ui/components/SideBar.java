@@ -1,10 +1,12 @@
 package com.uniyaz.sorun.ui.components;
 
+import com.uniyaz.MyUI;
 import com.uniyaz.sorun.ui.views.AddCategoryView;
 import com.uniyaz.sorun.ui.views.ListCategoryView;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -33,6 +35,10 @@ public class SideBar extends VerticalLayout {
             public void buttonClick(Button.ClickEvent clickEvent) {
                 AddCategoryView addCategoryView = new AddCategoryView();
                 content.setContent(addCategoryView);
+
+//                Container container = (Container) getParent();
+//                Content cont = (Content) container.getComponent(1);
+//                cont.setContent(addCategoryView);
             }
         });
         addComponent(btnCategoryMenuButton);
