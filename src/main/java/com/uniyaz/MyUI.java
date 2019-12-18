@@ -29,10 +29,6 @@ public class MyUI extends UI {
     }
 
 
-
-
-
-
 //    @Override
 //    protected void init(VaadinRequest vaadinRequest) {
 //

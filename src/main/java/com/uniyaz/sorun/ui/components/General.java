@@ -11,7 +11,7 @@ public class General extends VerticalLayout {
         Header header = new Header();
         addComponent(header);
 
-        Container container = new Container();
+        Container container = new Container(header);
         addComponent(container);
     }
 }

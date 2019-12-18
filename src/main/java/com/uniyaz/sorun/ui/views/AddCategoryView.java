@@ -1,6 +1,7 @@
 package com.uniyaz.sorun.ui.views;
 
 import com.uniyaz.sorun.domain.Category;
+import com.uniyaz.sorun.ui.components.SaveButton;
 import com.uniyaz.sorun.utils.HibernateUtil;
 import com.vaadin.ui.*;
 import org.hibernate.Session;
@@ -18,14 +19,14 @@ public class AddCategoryView extends VerticalLayout {
         addComponent(mainLayout);
 
         TextField idField = new TextField("Id");
+        idField.setEnabled(false);
         mainLayout.addComponent(idField);
 
         TextField nameField = new TextField("Name");
         mainLayout.addComponent(nameField);
 
-        Button btnSave = new Button("Kaydet");
-        btnSave.setCaption("Kaydet");
-        btnSave.addClickListener(new Button.ClickListener() {
+        SaveButton saveButton = new SaveButton();
+        saveButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
                 SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -36,7 +37,8 @@ public class AddCategoryView extends VerticalLayout {
                     String nameFieldValue = nameField.getValue();
                     Category category = new Category();
                     category.setName(nameFieldValue);
-                    session.save(category);
+                    category = (Category) session.merge(category);
+                    idField.setValue(category.getId().toString());
                     session.getTransaction().commit();
                     Notification.show("İşlem Başarılı");
                 } catch (Exception ex) {
@@ -46,6 +48,6 @@ public class AddCategoryView extends VerticalLayout {
                 }
             }
         });
-        mainLayout.addComponent(btnSave);
+        mainLayout.addComponent(saveButton);
     }
 }
