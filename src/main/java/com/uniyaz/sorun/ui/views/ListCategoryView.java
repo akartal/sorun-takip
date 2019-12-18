@@ -1,5 +1,6 @@
 package com.uniyaz.sorun.ui.views;
 
+import com.uniyaz.sorun.dao.CategoryDao;
 import com.uniyaz.sorun.domain.Category;
 import com.uniyaz.sorun.ui.components.SaveButton;
 import com.uniyaz.sorun.utils.HibernateUtil;
@@ -20,12 +21,8 @@ import java.util.List;
 public class ListCategoryView extends VerticalLayout {
 
     private Table table;
-    private TextField idField;
-    private TextField nameField;
-    private SaveButton saveButton;
     private IndexedContainer indexedContainer;
-
-    private FormLayout formLayout;
+    private AddCategoryView addCategoryView;
 
     public ListCategoryView() {
 
@@ -34,29 +31,21 @@ public class ListCategoryView extends VerticalLayout {
         buildTable();
         addComponent(table);
 
-        buildFormLayout();
-        addComponent(formLayout);
+        addCategoryView = new AddCategoryView();
+        addComponent(addCategoryView);
 
         fillTable();
     }
 
     private void fillTable() {
 
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session sessionEx = null;
-        try (Session session = sessionFactory.openSession();) {
-            sessionEx = session;
-            Query query = sessionEx.createQuery("Select category From Category category");
-            List<Category> categoryList = query.list();
-            for (Category category : categoryList) {
-                Item item = indexedContainer.addItem(category);
-                item.getItemProperty("id").setValue(category.getId());
-                item.getItemProperty("name").setValue(category.getName());
-            }
+        CategoryDao categoryDao = new CategoryDao();
+        List<Category> categoryList = categoryDao.findAllCategory();
 
-        } catch (Exception ex) {
-            sessionEx.getTransaction().rollback();
-            System.out.println(ex.getMessage());
+        for (Category category : categoryList) {
+            Item item = indexedContainer.addItem(category);
+            item.getItemProperty("id").setValue(category.getId());
+            item.getItemProperty("name").setValue(category.getName());
         }
     }
 
@@ -78,47 +67,8 @@ public class ListCategoryView extends VerticalLayout {
             @Override
             public void itemClick(ItemClickEvent itemClickEvent) {
                 Category category = (Category) itemClickEvent.getItemId();
-                idField.setValue(category.getId().toString());
-                nameField.setValue(category.getName());
+                addCategoryView.fillViewByCategory(category);
             }
         });
-    }
-
-    private void buildFormLayout() {
-
-        formLayout = new FormLayout();
-
-        idField = new TextField("Id");
-        idField.setEnabled(false);
-        formLayout.addComponent(idField);
-
-        nameField = new TextField("Name");
-        formLayout.addComponent(nameField);
-
-        saveButton = new SaveButton();
-        saveButton.addClickListener(new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent clickEvent) {
-                SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-                Session sessionEx = null;
-                try (Session session = sessionFactory.openSession();) {
-                    sessionEx = session;
-                    session.getTransaction().begin();
-                    String nameFieldValue = nameField.getValue();
-                    Category category = new Category();
-                    category.setId(Long.parseLong(idField.getValue()));
-                    category.setName(nameFieldValue);
-                    category = (Category) session.merge(category);
-                    idField.setValue(category.getId().toString());
-                    session.getTransaction().commit();
-                    Notification.show("İşlem Başarılı");
-                } catch (Exception ex) {
-                    sessionEx.getTransaction().rollback();
-                    System.out.println(ex.getMessage());
-                    Notification.show(ex.getMessage(), Notification.Type.ERROR_MESSAGE);
-                }
-            }
-        });
-        formLayout.addComponent(saveButton);
     }
 }
