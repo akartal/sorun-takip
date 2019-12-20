@@ -30,7 +30,7 @@ public class Issue extends BaseDomain {
     @Column(length = 500)
     private String content;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(length = 10)
     private EnumIssueState issueState;
 

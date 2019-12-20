@@ -1,6 +1,7 @@
 package com.uniyaz;
 
 import com.uniyaz.sorun.ui.components.General;
+import com.uniyaz.sorun.ui.components.Header;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.annotations.Widgetset;
@@ -17,6 +18,8 @@ import javax.servlet.annotation.WebServlet;
 @Widgetset("com.uniyaz.MyAppWidgetset")
 public class MyUI extends UI {
 
+    private Header header;
+
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         General general = new General();
@@ -28,8 +31,15 @@ public class MyUI extends UI {
     public static class MyUIServlet extends VaadinServlet {
     }
 
+    public Header getHeader() {
+        return header;
+    }
 
-//    @Override
+    public void setHeader(Header header) {
+        this.header = header;
+    }
+
+    //    @Override
 //    protected void init(VaadinRequest vaadinRequest) {
 //
 //        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();

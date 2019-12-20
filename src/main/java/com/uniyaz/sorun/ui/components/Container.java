@@ -1,7 +1,5 @@
 package com.uniyaz.sorun.ui.components;
 
-import com.uniyaz.sorun.ui.views.AddCategoryView;
-import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 
 /**
@@ -9,14 +7,12 @@ import com.vaadin.ui.HorizontalLayout;
  */
 public class Container extends HorizontalLayout {
 
-    private Header header;
 
-    public Container(Header header) {
-        this.header = header;
+    public Container() {
         setWidth(100, Unit.PERCENTAGE);
 
         Content content = new Content();
-        SideBar sideBar = new SideBar(header, content);
+        SideBar sideBar = new SideBar(content);
 
         addComponent(sideBar);
         addComponent(content);
