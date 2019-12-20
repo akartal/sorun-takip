@@ -26,7 +26,7 @@ public class AddIssueView extends BaseAddView {
     private ComboBox categoryCombo;
 
     public AddIssueView() {
-        buildMainLayout();
+
     }
 
     public void buildMainLayout() {

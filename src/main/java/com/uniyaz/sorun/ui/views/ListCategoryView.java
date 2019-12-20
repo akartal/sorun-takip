@@ -2,16 +2,12 @@ package com.uniyaz.sorun.ui.views;
 
 import com.uniyaz.sorun.dao.CategoryDao;
 import com.uniyaz.sorun.domain.Category;
-import com.uniyaz.sorun.ui.components.SaveButton;
-import com.uniyaz.sorun.utils.HibernateUtil;
 import com.vaadin.data.Item;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.shared.ui.MultiSelectMode;
-import com.vaadin.ui.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalLayout;
 
 import java.util.List;
 

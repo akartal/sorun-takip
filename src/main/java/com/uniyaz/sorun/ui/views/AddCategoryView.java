@@ -17,7 +17,6 @@ public class AddCategoryView extends BaseAddView {
     private FormLayout mainLayout;
 
     public AddCategoryView() {
-        buildMainLayout();
     }
 
     public void fillViewByCategory(Category category) {
