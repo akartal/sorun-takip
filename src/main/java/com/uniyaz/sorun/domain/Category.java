@@ -1,11 +1,13 @@
 package com.uniyaz.sorun.domain;
 
 import com.uniyaz.sorun.common.BaseDomain;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Audited
 @Entity
 @Table(name = "CATEGORY")
 public class Category extends BaseDomain {
