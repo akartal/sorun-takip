@@ -1,6 +1,9 @@
 package com.uniyaz.sorun.domain;
 
 import com.uniyaz.sorun.common.BaseDomain;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -38,6 +41,7 @@ public class Issue extends BaseDomain {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CATEGORY", referencedColumnName = "ID", foreignKey = @ForeignKey(name = "ISSUE_CATEGORY_ID"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Category category;
 
     public Long getId() {

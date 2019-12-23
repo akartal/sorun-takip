@@ -6,6 +6,7 @@ import com.uniyaz.sorun.ui.components.DeleteButton;
 import com.uniyaz.sorun.ui.components.SaveButton;
 import com.uniyaz.sorun.ui.components.StTextField;
 import com.vaadin.data.fieldgroup.FieldGroup;
+import com.vaadin.data.fieldgroup.PropertyId;
 import com.vaadin.data.util.BeanItem;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
@@ -14,15 +15,19 @@ import com.vaadin.ui.Notification;
 /**
  * Created by AKARTAL on 17.12.2019.
  */
-public class AddCategoryView extends BaseAddView {
+public class AddCategoryPropertyView extends BaseAddView {
 
+    @PropertyId("id")
     private StTextField idField;
+
+    @PropertyId("name")
     private StTextField nameField;
+
     private FormLayout mainLayout;
     private BeanItem<Category> item;
     private FieldGroup binder;
 
-    public AddCategoryView() {
+    public AddCategoryPropertyView() {
         fillViewByCategory(new Category());
     }
 
@@ -30,12 +35,7 @@ public class AddCategoryView extends BaseAddView {
 
         item = new BeanItem<Category>(category);
         binder = new FieldGroup(item);
-        binder.bind(idField, "id");
-        binder.bind(nameField, "name");
-
-        // Artık gerek kalmadı
-//        idField.setValue(category.getId().toString());
-//        nameField.setValue(category.getName());
+        binder.bindMemberFields(this);
     }
 
     public void buildMainLayout() {
@@ -79,18 +79,6 @@ public class AddCategoryView extends BaseAddView {
     }
 
     public void saveView() {
-        // Bunlara gerek kalmadı
-
-//        Long idFieldValue = null;
-//        if (idField.getValue() != "") {
-//            idFieldValue = Long.parseLong(idField.getValue());
-//        }
-//        String nameFieldValue = nameField.getValue();
-//
-//        Category category = new Category();
-//        category.setId(idFieldValue);
-//        category.setName(nameFieldValue);
-
         try {
             binder.commit();
             Category category = item.getBean();

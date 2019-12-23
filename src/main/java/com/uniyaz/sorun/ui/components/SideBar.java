@@ -1,9 +1,6 @@
 package com.uniyaz.sorun.ui.components;
 
-import com.uniyaz.sorun.ui.views.AddCategoryView;
-import com.uniyaz.sorun.ui.views.AddIssueView;
-import com.uniyaz.sorun.ui.views.ListCategoryView;
-import com.uniyaz.sorun.ui.views.ListIssueView;
+import com.uniyaz.sorun.ui.views.*;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
@@ -16,6 +13,7 @@ public class SideBar extends VerticalLayout {
     private Content content;
 
     private MenuButton btnCategoryMenuButton;
+    private MenuButton btnCategoryPropertyMenuButton;
     private MenuButton btnCategoryListMenuButton;
     private MenuButton btnIssueMenuButton;
     private MenuButton btnListIssueMenuButton;
@@ -29,6 +27,9 @@ public class SideBar extends VerticalLayout {
 
         buildAddCategoryMenuButton();
         addComponent(btnCategoryMenuButton);
+
+        buildAddCategoryPropertyMenuButton();
+        addComponent(btnCategoryPropertyMenuButton);
 
         buildListCategoryMenuButton();
         addComponent(btnCategoryListMenuButton);
@@ -77,6 +78,22 @@ public class SideBar extends VerticalLayout {
 //                Container container = (Container) getParent();
 //                Content cont = (Content) container.getComponent(1);
 //                cont.setContent(addCategoryView);
+            }
+        });
+    }
+
+    private void buildAddCategoryPropertyMenuButton() {
+        btnCategoryPropertyMenuButton = new MenuButton(FontAwesome.PLUS_SQUARE);
+        btnCategoryPropertyMenuButton.setCaption("Kategori Ekle Property");
+        btnCategoryPropertyMenuButton.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent clickEvent) {
+                AddCategoryPropertyView addCategoryPropertyView = new AddCategoryPropertyView();
+                content.setContent(addCategoryPropertyView);
+
+//                Container container = (Container) getParent();
+//                Content cont = (Content) container.getComponent(1);
+//                cont.setContent(addCategoryPropertyView);
             }
         });
     }

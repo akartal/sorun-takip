@@ -37,4 +37,15 @@ public class CategoryDao {
         }
         return categoryList;
     }
+
+    public void deleteCategory(Category category) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        try (Session session = sessionFactory.openSession();) {
+            session.getTransaction().begin();
+            session.delete(category);
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
