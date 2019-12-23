@@ -1,6 +1,7 @@
 package com.uniyaz.sorun.domain;
 
 import com.uniyaz.sorun.common.BaseDomain;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import java.util.Date;
 /**
  * Created by AKARTAL on 17.12.2019.
  */
+@Audited
 @Entity
 @Table(name = "ISSUE")
 public class Issue extends BaseDomain {
