@@ -12,6 +12,7 @@ public class IssueDao {
 
     public Issue saveIssue(Issue issue){
 
+        validateSaveIssue(issue);
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         try (Session session = sessionFactory.openSession();) {
@@ -25,6 +26,12 @@ public class IssueDao {
         }
 
         return issue;
+    }
+
+    private void validateSaveIssue(Issue issue) {
+        if (issue.getTopic().trim().equals("")) {
+            throw new RuntimeException("Topic boş geçilemez...");
+        }
     }
 
     public List<Issue> findAllIssue() {
