@@ -48,4 +48,17 @@ public class CategoryDao {
             System.out.println(ex.getMessage());
         }
     }
+
+    public Category findAllById(Long categoryId) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        try (Session session = sessionFactory.openSession();) {
+            String hql = "Select category From Category category Where category.id = :categoryId";
+            Query query = session.createQuery(hql);
+            query.setParameter("categoryId", categoryId);
+            return  (Category) query.uniqueResult();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
 }

@@ -1,9 +1,9 @@
-package com.uniyaz.sorun.service.soap;
+package com.uniyaz.sorun.web.soap;
 
 import com.uniyaz.sorun.dao.IssueDao;
 import com.uniyaz.sorun.domain.Issue;
-import com.uniyaz.sorun.service.converter.IssueConverter;
-import com.uniyaz.sorun.service.dto.IssueDto;
+import com.uniyaz.sorun.web.converter.IssueConverter;
+import com.uniyaz.sorun.web.dto.IssueDto;
 
 import javax.jws.WebService;
 import javax.servlet.annotation.WebListener;
@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
  */
 @WebServlet(urlPatterns = "/services/*", name = "IssueServiceServlet", loadOnStartup = 1)
 @WebListener(value = "com.sun.xml.ws.transport.http.servlet.WSServletContextListener")
-@WebService(endpointInterface = "com.uniyaz.sorun.service.soap.IssueService", name = "IssueService")
+@WebService(endpointInterface = "com.uniyaz.sorun.web.soap.IssueService", name = "IssueService")
 public class IssueServiceImpl implements IssueService {
 
     @Override

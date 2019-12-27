@@ -4,6 +4,6 @@
         version="2.0">
     <endpoint
             name="IssueService"
-            implementation="com.uniyaz.sorun.service.soap.IssueServiceImpl"
+            implementation="com.uniyaz.sorun.web.soap.IssueServiceImpl"
             url-pattern="/services/IssueService" />
 </endpoints>

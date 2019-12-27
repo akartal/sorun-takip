@@ -1,4 +1,4 @@
-package com.uniyaz.sorun.service.dto;
+package com.uniyaz.sorun.web.dto;
 
 /**
  * Created by AKARTAL on 26.12.2019.

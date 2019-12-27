@@ -1,7 +1,7 @@
-package com.uniyaz.sorun.service.converter;
+package com.uniyaz.sorun.web.converter;
 
 import com.uniyaz.sorun.domain.Issue;
-import com.uniyaz.sorun.service.dto.IssueDto;
+import com.uniyaz.sorun.web.dto.IssueDto;
 
 /**
  * Created by AKARTAL on 26.12.2019.

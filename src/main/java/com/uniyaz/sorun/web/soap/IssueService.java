@@ -1,6 +1,6 @@
-package com.uniyaz.sorun.service.soap;
+package com.uniyaz.sorun.web.soap;
 
-import com.uniyaz.sorun.service.dto.IssueDto;
+import com.uniyaz.sorun.web.dto.IssueDto;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;

@@ -40,7 +40,8 @@ public class IssueDao {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         try (Session session = sessionFactory.openSession();) {
-            Query query = session.createQuery("Select issue From Issue issue left join fetch issue.category category");
+            String hql = "Select issue From Issue issue left join fetch issue.category category";
+            Query query = session.createQuery(hql);
 
             issueList = query.list();
 
